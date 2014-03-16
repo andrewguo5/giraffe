@@ -1,0 +1,50 @@
+public class Hail {
+    
+    public static int hail(int n) {
+	if (n==1){
+	    System.out.println(n);
+	    return 1;
+	}
+	if (n%2 == 0) {
+	    System.out.println(n);
+	    return (hail (n/2) );
+	}
+	else 
+	    {
+		System.out.println(n);
+		return hail (3*n + 1);
+	    }
+    }
+
+    public static int hailLen(int n) {
+	if (n == 1) {
+	    return 1;
+	}
+	if (n%2 == 0) {
+	    return 1 + hailLen(n/2);
+	}
+	else {
+	    return 1 + hailLen(3*n + 1);
+	}
+    }
+
+    public static int longestHailR(int n) {
+	return 4;
+    }
+
+
+    public static int longestHail(int n) {
+	int maxNum = 0;
+	int maxVal = 0;
+	for (int i = 0; i < n; i++) {
+	    if (hailLen(i) > maxNum) {
+		maxVal = i;
+	    }
+	}
+	return maxVal;
+    }
+
+    public static void main (String[] args) {
+	System.out.println("LOLOLOLOLOL");
+    }
+}

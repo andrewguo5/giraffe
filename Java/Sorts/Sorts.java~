@@ -1,0 +1,47 @@
+public class Sorts{
+
+    public static void msort(ArrayList<String> L){
+
+    }
+
+    public static String name(){
+        return "Guo,Andrew";
+    }
+
+    public static int[] merge (int[] a, int[] b) {
+	int[] pile = new int[a.length + b.length];
+	int aCtr = 0;
+	int bCtr = 0;
+	int n = 0;
+	while (aCtr < a.length && bCtr < b.length) {
+	    if (a[aCtr] < b[bCtr]) {
+		pile[n] = a[aCtr];
+		aCtr++;
+	    }
+	    else {
+		pile[n] = b[bCtr];
+		bCtr++;
+	    }
+	    n++;
+	}
+	while (aCtr < a.length) {
+	    pile[n] = a[aCtr];
+	    aCtr++;
+	    n++;
+	}
+	while (bCtr < b.length) {
+	    pile[n] = b[bCtr];
+	    bCtr++;
+	    n++;
+	}
+	return pile;
+    }//end merge
+
+    public static ArrayList<String> copy (ArrayList src, int start, ArrayList dest, int begin, int amt) {
+	for (int n = 0; n < amt; n++) {
+	    src.set(///
+	}
+    }
+
+    //HELPER FUNCTOINS ARE FINE!
+}

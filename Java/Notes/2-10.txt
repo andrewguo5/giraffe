@@ -1,0 +1,13 @@
+February 10th, 2014
+
+=========
+Recursion
+=========
+
+-factorial(n)-
+
+factorial(5) = 5 * factorial(4);
+
+Base case: factorial(0) = 1;
+
+

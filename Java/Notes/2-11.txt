@@ -1,0 +1,15 @@
+February 11, 2014
+
+hail(n)
+
+n=1, stop
+2|n, hail(n/2)
+2\|n, hail (3n + 1)
+
+conjecture-> eventually this will end in 1 if n is any integer.
+
+ends in 1 if it hits any power of 2
+
+hailLen(n) gives the length of hail(n)
+
+longestHail(n) what N from 1 to n has the longest length sequence
