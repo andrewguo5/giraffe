@@ -108,6 +108,7 @@ public class Quicksort {
 	    System.out.print(n);
 	    System.out.print(":\t");
 	    System.out.println(testarray[n]);
+
 	}
 	System.out.println();
 	
