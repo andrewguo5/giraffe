@@ -43,7 +43,8 @@ public class MyLinkedList<T> {
 
 	    //If we are adding to the front, then we simply place the new node after the head node
 	    if (position == 0) {
-		head.setNext(newNode);		
+		newNode.setNext(head.getNext());
+		head.setNext(newNode);  
 	    }
 	    //Otherwise, we must find the node that comes before the position we are adding to, and swap 
 	    //around links
@@ -119,7 +120,6 @@ public class MyLinkedList<T> {
     }
    
     public static void main (String[] args) {
-	/*
 	MyLinkedList giraffe = new MyLinkedList("bombshell");
 	System.out.println(giraffe);
 	System.out.println(giraffe.getNode(0));
@@ -129,6 +129,7 @@ public class MyLinkedList<T> {
 	giraffe.add("damsel", 4);
 
 	System.out.println(giraffe);
+	/*
 	System.out.println("Data at 0: " + giraffe.getNode(0));
 	System.out.println("Data at 2: " + giraffe.getNode(2));
 	System.out.println("Data at 3: " + giraffe.getNode(3));
