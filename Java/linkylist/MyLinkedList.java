@@ -1,21 +1,20 @@
 
-public class MyLinkedList {
+public class MyLinkedList<T> {
     
-    private Node head;
+    private Node<T> head;
     
-    public MyLinkedList() {
-	head = new Node(null);
+    public MyLinkedList(){
+	head = new Node<T>(null);
     }
 
-    public MyLinkedList(String data) {
+    public MyLinkedList(T data) {
 	this();
-	head.setNext(new Node(data) );
+	head.setNext(new Node<T>(data) );
     }
-
-    public Node getNode(int position) {
+    public Node<T> getNode(int position) {
 	//Create a pointer that starts at instance var head
-	Node tmp = head;
-
+	Node<T> tmp = head;
+	//what
 	//create an int to count with
 	int i = position + 1;
 	while (i > 0) {
@@ -32,7 +31,7 @@ public class MyLinkedList {
 	return tmp;
     }
 
-    public void add(String s, int position) {
+    public void add(T s, int position) {
 	//If we try to add beyond the list, we get an exception
 	if (position > this.length()  || position < 0)
 	    {
@@ -40,7 +39,7 @@ public class MyLinkedList {
 	}
 	else {
 	    //create the node to add
-	    Node newNode = new Node(s);
+	    Node<T> newNode = new Node<T>(s);
 
 	    //If we are adding to the front, then we simply place the new node after the head node
 	    if (position == 0) {
@@ -50,7 +49,7 @@ public class MyLinkedList {
 	    //around links
 	    else {
 		//Call the node at the previous location
-		Node prevNode = getNode(position - 1); 
+		Node<T> prevNode = getNode(position - 1); 
 		//Attach the newNode to the next on the list, then attach the previous on the list to the newNode
 		newNode.setNext(prevNode.getNext() );
 		prevNode.setNext(newNode);
@@ -58,11 +57,11 @@ public class MyLinkedList {
 	    }
 	}	    
     }
-    public String get(int position) {
+    public T get(int position) {
 	return getNode(position).getData();
     }
 
-    public void set(String s, int position) {
+    public void set(T s, int position) {
 	getNode(position).setData(s);
     }
 
@@ -73,13 +72,13 @@ public class MyLinkedList {
 		throw new IndexOutOfBoundsException("Index " + position + " is out of bounds");
 	    }
 	else {
-	    Node prevNode = getNode(position - 1);
+	    Node<T> prevNode = getNode(position - 1);
 	    prevNode.setNext(prevNode.getNext().getNext());
 	}	
     }   
 
-    public int find(String s) {
-	Node tmp = head.getNext();
+    public int find(T s) {
+	Node<T> tmp = head.getNext();
 	int ctr = 0;
 	while (tmp != null) {
 	    if (tmp.getData().equals(s)) {
@@ -93,7 +92,7 @@ public class MyLinkedList {
     
     public int length() {
 	int ctr = 0;
-	Node tmp = head.getNext();
+	Node<T> tmp = head.getNext();
 	while (tmp != null) {
 	    ctr++;
 	    tmp = tmp.getNext();
@@ -104,22 +103,23 @@ public class MyLinkedList {
     public String toString() {
 	String retStr = "";
 	retStr += "[";
-	Node tmp = head.getNext();
+	Node<T> tmp = head.getNext();
 	while (tmp != null) {
-	    retStr += tmp.getData();
+	    retStr += tmp.getData().toString();
 	    tmp = tmp.getNext();
 	    retStr += ", ";
 	}
 	if (retStr.length() > 2) {
-	    retStr = retStr.substring(0, retStr.length()-2) + "]";
+	    retStr = retStr.substring(0, retStr.length()-2);
 	}
+	retStr += "]";
 	//System.out.println("pawprint");
 	return retStr;
 	
     }
    
     public static void main (String[] args) {
-	/*	
+	/*
 	MyLinkedList giraffe = new MyLinkedList("bombshell");
 	System.out.println(giraffe);
 	System.out.println(giraffe.getNode(0));
@@ -140,7 +140,7 @@ public class MyLinkedList {
 	System.out.println("where is bombshell? " + giraffe.find("bombshell"));
 	System.out.println("where is waldo? " + giraffe.find("waldo"));
 
-	giraffe.remove(-1);
+	giraffe.remove(1);
 	System.out.println(giraffe);
 	*/
     }
