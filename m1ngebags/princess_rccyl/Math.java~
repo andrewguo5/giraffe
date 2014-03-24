@@ -1,0 +1,38 @@
+
+public class Math {
+    public static int add(int a, int b){
+ return a + b;
+    }
+    public static int sub(int a, int b){
+ return a - b;
+    }
+    public static int mult(int a, int b){
+ int ans = 0;
+ while (b>0){
+     ans = add(ans,a);
+     b --;
+ }
+ return ans;
+    }     
+    public static int divi(int a, int b){
+ int ans = 0;
+ while (a>0){
+     ans++;
+     a= sub(a,b);
+ }
+ return ans;
+    }
+    public static int exp(int a, int b){
+ int ans = a;
+ if (b=0){
+     return 1;
+  }
+ else {
+    public static void main (String[]args){
+ System.out.println(add(4,5));
+ System.out.println(sub(9,4));
+ System.out.println(mult(4,5));
+ System.out.println(divi(20,5));
+      }
+
+}

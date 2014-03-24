@@ -120,6 +120,7 @@ public class MyLinkedList<T> {
     }
    
     public static void main (String[] args) {
+	/*
 	MyLinkedList giraffe = new MyLinkedList("bombshell");
 	System.out.println(giraffe);
 	System.out.println(giraffe.getNode(0));
@@ -129,7 +130,6 @@ public class MyLinkedList<T> {
 	giraffe.add("damsel", 4);
 
 	System.out.println(giraffe);
-	/*
 	System.out.println("Data at 0: " + giraffe.getNode(0));
 	System.out.println("Data at 2: " + giraffe.getNode(2));
 	System.out.println("Data at 3: " + giraffe.getNode(3));
