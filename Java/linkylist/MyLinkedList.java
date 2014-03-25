@@ -2,15 +2,19 @@
 public class MyLinkedList<T> {
     
     private Node<T> head;
+    private Node<T> tail;
     
     public MyLinkedList(){
 	head = new Node<T>(null);
+	tail = head;
     }
 
     public MyLinkedList(T data) {
 	this();
 	head.setNext(new Node<T>(data) );
+	tail = head.getNext();
     }
+
     public Node<T> getNode(int position) {
 	//Create a pointer that starts at instance var head
 	Node<T> tmp = head;
@@ -31,26 +35,38 @@ public class MyLinkedList<T> {
 	return tmp;
     }
 
+    //add method appends an element to the end of the list
+    public void add (T s) {
+	Node<T> newNode = new Node<T>(s);
+	tail.setNext(newNode);
+	tail = tail.getNext();
+    }
+
     public void add(T s, int position) {
 	//If we try to add beyond the list, we get an exception
 	if (position > this.length()  || position < 0)
 	    {
 		throw new IndexOutOfBoundsException("Index " + position + " is out of bounds");
-	}
+	    }
 	else {
 	    //create the node to add
 	    Node<T> newNode = new Node<T>(s);
 
-	    //If we are adding to the front, then we simply place the new node after the head node
+	    //If we are adding to the front, then we place the new node after the head node
 	    if (position == 0) {
 		newNode.setNext(head.getNext());
 		head.setNext(newNode);  
+	    }
+	    //If we are adding to the end, then we place the new node after the tail node
+	    if (position == length() ) {
+		tail.setNext(newNode);
+		tail = tail.getNext();
 	    }
 	    //Otherwise, we must find the node that comes before the position we are adding to, and swap 
 	    //around links
 	    else {
 		//Call the node at the previous location
-		Node<T> prevNode = getNode(position - 1); 
+		Node<T> prevNode = getNode(position - 1);
 		//Attach the newNode to the next on the list, then attach the previous on the list to the newNode
 		newNode.setNext(prevNode.getNext() );
 		prevNode.setNext(newNode);
@@ -58,6 +74,8 @@ public class MyLinkedList<T> {
 	    }
 	}	    
     }
+
+
     public T get(int position) {
 	return getNode(position).getData();
     }
@@ -72,6 +90,10 @@ public class MyLinkedList<T> {
 	    {
 		throw new IndexOutOfBoundsException("Index " + position + " is out of bounds");
 	    }
+	else if (position == length() - 1) {
+	    tail = getNode(length() - 2);
+	    tail.setNext(null); 
+	}
 	else {
 	    Node<T> prevNode = getNode(position - 1);
 	    prevNode.setNext(prevNode.getNext().getNext());
@@ -121,13 +143,15 @@ public class MyLinkedList<T> {
    
     public static void main (String[] args) {
 	/*
-	MyLinkedList giraffe = new MyLinkedList("bombshell");
+	MyLinkedList giraffe = new MyLinkedList();
+	System.out.println(giraffe);
+	giraffe.add("andrew");
 	System.out.println(giraffe);
 	System.out.println(giraffe.getNode(0));
-	giraffe.add("atomic", 1);
-	giraffe.add("catastrophe", 2);
-	giraffe.add("damsel", 3);
-	giraffe.add("damsel", 4);
+	giraffe.add("atomic");
+	giraffe.add("catastrophe");
+	giraffe.add("damsel");
+	giraffe.add("damsel");
 
 	System.out.println(giraffe);
 	System.out.println("Data at 0: " + giraffe.getNode(0));
