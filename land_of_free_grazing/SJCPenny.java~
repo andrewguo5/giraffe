@@ -1,0 +1,54 @@
+import java.util.*;
+import java.io.*;
+
+public class SJCPenny {
+
+    public static void main (String[] args) {
+
+	Scanner in = new Scanner (System.in);
+	int numItems = in.nextInt();
+
+	String[] items = new String[numItems];
+	double[] prices = new double[numItems];
+	for (int n = 0; n < numItems; n++) {
+	    items[n] = in.next();
+	    while (!in.hasNextDouble() ) {
+		items[n] = items[n] + " " + in.next();
+	    }
+	    prices[n] = in.nextDouble();
+	}
+	
+	double originalPrice = 0;
+	for (double price : prices) {
+	    originalPrice += price;
+	}
+	
+	double discountedPrice = originalPrice;
+	if ( originalPrice >= 100 ){
+	    discountedPrice -= 10;
+	}
+
+	double discountRate = discountedPrice/(double)originalPrice;
+
+	double totalPrice = 0;
+	for (int n = 0; n < numItems-1; n++) {
+	    prices[n] *= discountRate;
+	    prices[n] = Math.round(prices[n]*100)/100.0;
+	    totalPrice += prices[n];
+	}
+	prices[numItems-1] = discountedPrice - totalPrice;
+	prices[numItems-1] = Math.round(prices[numItems-1]*100)/100.0;
+	totalPrice += prices[numItems-1];
+	totalPrice = Math.round(totalPrice*100)/100.0;
+
+	for (int n = 0; n < numItems; n++) {
+	    System.out.println(items[n] + "\t" + prices[n]);
+			       
+	}
+	System.out.println("TOTAL\t" + totalPrice);	
+	
+    }   
+    
+
+
+}

@@ -1,0 +1,99 @@
+import java.util.*;
+import java.io.*;
+
+public class Polly {
+
+    public static String getLast (String line, int n) {//helper
+	return line.substring(line.length() - n);
+    }
+    
+    public static String getSequence(String line) {//gets the seqence 
+	
+	String sequence = line.substring(line.length() - 1);
+	String nline = line.substring(0, line.length() - 1);
+	int seqlength = 1;
+	int n = nline.length();
+	boolean badDay = true;
+	while (n - seqlength > 0) {
+	    if (getLast(nline, seqlength).equals(sequence) ) { //if the last n match
+		badDay = false;
+		break; //we're done
+	    }
+	    else {
+		sequence = getLast(nline, 1) + sequence; //must be more to seq
+		seqlength = sequence.length();	
+		n -= 1;
+		if (n < 0) break;;
+		nline = nline.substring(0, n); //truncate the line being anlyzd
+	    }
+	} //after this we have our seq string
+	if (badDay) {
+	    return "0"; //polly only reads letters. this is a number.
+	}
+	return sequence;
+    }    
+
+    //returns the number of letters in sequence that polly said before she was interrupted
+    public static int interruptedNum (String line, String seq) {
+	int n = 0;
+	int i = 0;
+	int firstOccurence = line.indexOf(seq);
+	//System.out.println(firstOccurence);
+	String nline = line.substring(0, firstOccurence); //the part before the seqence starts
+	//System.out.println(nline);
+	boolean matches = true;
+	while (matches && i < firstOccurence) {
+	    //System.out.println("giraffe");
+	    if (getLast(seq, i).equals(getLast(nline,i))) {
+		n++;
+		i++;
+	    }
+	    else {matches = false;}
+	}
+	return n;
+    }
+
+    public static String swap (String seq, int n) {//rotates the seqence 
+	String retStr = seq;
+	while (n > 0) {
+	    String last = retStr.substring(seq.length() - 1);
+	    retStr = last + retStr.substring(0, seq.length() - 1);
+	    n--;
+	}
+	return retStr;
+    }
+
+    public static void main (String[] args) {
+
+	//	System.out.println(getLast("the last four", 4));
+	//	System.out.println(getSequence("ABCABCABCAD"));
+	//System.out.println("ABCABCABCA".indexOf("BCA"));
+	//System.out.println(interruptedNum("DOGEDOGEDOGEDOGEDOG", "EDOG"));
+	//System.out.println(swap("BCA", 1));
+	Scanner in = new Scanner (System.in) ;
+	
+	int numDays = in.nextInt();
+	String[] sequences = new String[numDays];
+	for (int n = 0; n < numDays; n++ ) {
+	    sequences[n] = in.next();
+	}
+	
+
+	//1. Find the sequence that repeats. 
+	/////a. Find the last letter. Set as sequence.
+	/////b. Check the second to last letter. If same, done.
+	/////c. If not same, append to sequence.
+	////////-Check next, and if same as first letter, check second. 
+	//////// if all the same, then done.
+	////d. If none are the same, polly had a bad day.
+	
+	//2. Find the place the sequence starts.
+	/////a. Get the sequence, check until it does not check anymore.
+	/////b. Go to the last letter that the sequence checked with. Swap around so that this becomes the first letter of the sequence.
+	/////c. Find the index value of the first occurence of that sequence. 
+	//done.
+
+
+    }
+
+}
